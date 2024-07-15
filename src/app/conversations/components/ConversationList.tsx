@@ -20,9 +20,13 @@ interface ConversationListProps {
 }
 
 interface FriendRequest {
-  id: number;
+  _id: number;
   name: string;
   email: string;
+  sender:{
+    name: string;
+    email:string;
+  }
   status: string; // Added status field
 }
 
@@ -30,7 +34,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems, users
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("allChats");
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState([{name:"",id:"",email:""}]);
 
   const [isFriendRequestModalOpen, setIsFriendRequestModalOpen] = useState(false);
   const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([]); // Initialize as empty array
@@ -165,11 +169,11 @@ fetchFriendRequests()
 
       // Update state or fetch friend requests again to reflect changes
       setFriendRequests((current) =>
-        current.map((r) => (r.id === request.id ? { ...r, status: "accepted" } : r))
+        current.map((r) => (r._id === request._id ? { ...r, status: "accepted" } : r))
       
       );
-      setFriendRequests((current) => current.filter((r) => r.id !== request.id));
-      window.onlocation.reload()
+      setFriendRequests((current) => current.filter((r) => r._id !== request._id));
+     
     } catch (error) {
       console.error("Error accepting friend request:", error);
     }
@@ -186,7 +190,7 @@ fetchFriendRequests()
       }
 
       // Remove the request from state
-      setFriendRequests((current) => current.filter((r) => r.id !== request.id));
+      setFriendRequests((current) => current.filter((r) => r._id !== request._id));
     } catch (error) {
       console.error("Error rejecting friend request:", error);
     }
@@ -200,7 +204,7 @@ fetchFriendRequests()
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Received Friend Requests</h2>
           <div className="space-y-4">
             {friendRequests?.map((request) => (
-              <div key={request.id} className="border-b border-gray-200 dark:border-gray-700 pb-4">
+              <div key={request._id} className="border-b border-gray-200 dark:border-gray-700 pb-4">
                 <div className="flex justify-between items-center">
                   <div>
                     <h3 className="text-lg font-medium">{request.name}</h3>

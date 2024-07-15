@@ -4,6 +4,13 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import axios from "axios";
 
+type User = {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+};
+
 export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
@@ -33,9 +40,8 @@ export const authOptions: AuthOptions = {
 
           const user = response.data.user;
           
-
           if (user) {
-           console.log(user)
+            console.log(user)
             return user;
           } else {
             throw new Error("Invalid credentials");
@@ -55,12 +61,14 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user._id; // Ensure your user object includes an _id field
+        token.id = (user as User).id; // Ensure your user object includes an id field
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id;
+      if (session.user) {
+        (session.user as User).id = token.id as string;
+      }
       return session;
     },
   },
