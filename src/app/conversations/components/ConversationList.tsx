@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 import GroupChatModal from "../../components/modals/GroupChatModal";
 import useConversation from "../../hooks/useConversation";
-const { pusherClient,pusherEvents} = require('@/lib/pusher');
+import { pusherClient,pusherEvents} from '@/lib/pusher';
 import { FullConversationType } from "../../types";
 import ConversationBox from "./ConversationBox";
 import Modal from "@/app/components/modals/Modal";

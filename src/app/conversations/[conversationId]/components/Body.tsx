@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import useConversation from "@/app/hooks/useConversation";
 import { find } from "lodash";
 
-const { pusherClient,pusherEvents} = require('@/lib/pusher');
+import { pusherClient,pusherEvents} from ('@/lib/pusher');
 import { FullMessageType } from "../../../types";
 import MessageBox from "./MessageBox";
 

@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { Channel, Members } from "pusher-js";
 
 
-const { pusherClient} = require('@/lib/pusher');
+import { pusherClient,pusherEvents} from '@/lib/pusher';
 import useActiveList from "./useActiveList";
 
 const useActiveChannel = () => {
