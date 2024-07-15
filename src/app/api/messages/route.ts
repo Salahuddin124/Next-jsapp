@@ -62,7 +62,7 @@ export async function POST(request: Request) {
 
     const lastMessage = updatedConversation.messages[updatedConversation.messages.length - 1];
 
-    const updatedConversation=lastMessage
+ 
 
     return NextResponse.json(newMessage);
   } catch (error) {
