@@ -26,7 +26,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
     setIsLoading(true);
 
     axios
-      .delete(`/api/conversations/${conversationId}`)
+      .delete(`"https://messengerclone-production.up.railway.app}`)
       .then(() => {
         onClose();
         router.push("/conversations");
