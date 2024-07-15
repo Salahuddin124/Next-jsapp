@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 import getCurrentUser from "../../../actions/getCurrentUser";
 
-import { pusherServer,pusherEvents} from '@/lib/pusher';
 interface IParams {
   conversationId?: string;
 }
@@ -41,7 +40,7 @@ export async function DELETE(request: Request, { params }: { params: IParams }) 
 
     existingConversation.users.forEach((user) => {
       if (user.email) {
-        pusherServer.trigger(user.email, pusherEvents.DELETE_CONVERSATION, existingConversation);
+        
       }
     });
 
