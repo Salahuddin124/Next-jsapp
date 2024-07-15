@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import getCurrentUser from "../../actions/getCurrentUser";
 import prisma from "../../libs/prismadb";
-import { pusherEvents, pusherServer } from "../../libs/pusher";
+const { pusherServer,pusherEvents} = require('@/lib/pusher');
 
 export async function POST(request: Request) {
   try {

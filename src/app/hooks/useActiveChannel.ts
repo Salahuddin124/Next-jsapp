@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Channel, Members } from "pusher-js";
 
-import { pusherClient } from "../libs/pusher";
+
+const { pusherClient} = require('@/lib/pusher');
 import useActiveList from "./useActiveList";
 
 const useActiveChannel = () => {

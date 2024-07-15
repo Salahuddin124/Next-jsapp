@@ -25,14 +25,14 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setValue("message", "", { shouldValidate: true });
-    axios.post("/api/messages", {
+    axios.post("", {
       ...data,
       conversationId,
     });
   };
 
   const handleUpload = (result: any) => {
-    axios.post("/api/messages", {
+    axios.post("https://messengerclone-production.up.railway.app", {
       image: result.info.secure_url,
       conversationId: conversationId,
     });

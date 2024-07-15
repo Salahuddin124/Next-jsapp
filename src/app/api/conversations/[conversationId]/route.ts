@@ -2,7 +2,7 @@ import prisma from "@/app/libs/prismadb";
 import { NextResponse } from "next/server";
 
 import getCurrentUser from "../../../actions/getCurrentUser";
-import { pusherEvents, pusherServer } from "../../../libs/pusher";
+const { pusherServer,pusherEvents} = require('@/lib/pusher');
 
 interface IParams {
   conversationId?: string;
